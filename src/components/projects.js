@@ -8,12 +8,12 @@ class Projects {
     fetchProjects() {
         this.adapter.getProjects()
         .then(projects => {
-            projects.data.forEach(project => this.projects.push(new Projects(project)))
+            projects.data.forEach(project => this.projects.push(new Project(project)))
         })
         .then(() => this.render())
     }
 
     render() {
-        
+        console.log("rendering")
     }
 }
