@@ -19,5 +19,6 @@ class projectsAdapter {
               },
             body: JSON.stringify(project)
         })
+        .then(res => res.json())
     }
 }

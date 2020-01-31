@@ -11,6 +11,7 @@ class Projects {
         this.projectsContainer = document.querySelector(".projectsContainer")
         this.newProjectForm = document.querySelector(".newProjectForm")
         this.newProjectTitle = document.querySelector("#projectTitle")
+        this.projectsList = document.querySelector(".projectsList")
     }
 
     initEventListeners() {
@@ -29,16 +30,18 @@ class Projects {
         e.preventDefault()
         const value = this.newProjectTitle.value
         this.adapter.createProject(value)
-        console.log(value)
+        .then(project => {
+            this.projects.push(new Project(project.data))
+            this.render()
+        })
     }
 
     render() {
-        const projectList = document.createElement("ul")
-        this.projectsContainer.appendChild(projectList)
+        this.projectsList.innerHTML = ""
         for (const project of this.projects) {
             const projectLi = document.createElement("li")
             projectLi.innerText = project.title
-            projectList.appendChild(projectLi)
+            this.projectsList.appendChild(projectLi)
         }
     }
 }
