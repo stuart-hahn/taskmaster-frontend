@@ -8,7 +8,6 @@ class projectsAdapter {
     }
 
     createProject(value) {
-        console.log("creating...")
         const project = {
             title: value
         }
