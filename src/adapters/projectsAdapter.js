@@ -9,13 +9,16 @@ class projectsAdapter {
 
     createProject(value) {
         console.log("creating...")
+        const project = {
+            title: value
+        }
         return fetch(this.baseUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
               },
-            body: JSON.stringify(value)
+            body: JSON.stringify(project)
         })
     }
 }
