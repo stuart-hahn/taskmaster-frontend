@@ -14,6 +14,13 @@ class Projects {
     }
 
     render() {
-        console.log("rendering")
+        const projectsContainer = document.querySelector(".projectsContainer")
+        const projectList = document.createElement("ul")
+        projectsContainer.appendChild(projectList)
+        for (const project of this.projects) {
+            const projectLi = document.createElement("li")
+            projectLi.innerText = project.title
+            projectList.appendChild(projectLi)
+        }
     }
 }
