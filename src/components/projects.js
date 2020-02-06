@@ -32,7 +32,6 @@ class Projects {
         .then(() => this.render())
     }
     
-    
     createProject(e) {
         e.preventDefault()
         const value = this.newProjectTitle.value
@@ -49,7 +48,7 @@ class Projects {
         this.projectsList.innerHTML = ""
         for (const project of this.projects) {
             const projectLi = document.createElement("li")
-            projectLi.innerText = project.title
+            projectLi.innerText = `${project.title} | ✎ | delete`
             this.projectsList.appendChild(projectLi)
         }
     }
