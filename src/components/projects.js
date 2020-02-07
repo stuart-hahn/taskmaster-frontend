@@ -41,7 +41,6 @@ class Projects {
                 this.tasks.push(new Task(task))
             })
         })
-        console.log(this.tasks)
         // .then(() => this.renderTasks())
     }
     
@@ -64,5 +63,9 @@ class Projects {
             projectLi.innerText = `${project.title}`
             this.projectsList.appendChild(projectLi)
         }
+    }
+
+    renderTasks() {
+        this.taskList.innerHTML = ""
     }
 }
