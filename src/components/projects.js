@@ -48,12 +48,11 @@ class Projects {
         const projectTitle = document.createElement('h2')
         projectTitle.innerText = project.attributes.title
         this.tasksList.appendChild(projectTitle)
-
+        
         project.attributes.tasks.forEach(task => {
             const taskLi = document.createElement('li')
             taskLi.innerText = task.title
             this.tasksList.appendChild(taskLi)
         })
-
     }
 }

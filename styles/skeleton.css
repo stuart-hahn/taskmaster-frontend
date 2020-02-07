@@ -389,6 +389,12 @@ hr {
   display: none;
 }
 
+.projectsList li:hover {
+  cursor: pointer;
+  color: magenta;
+  font-size: 24px;
+}
+
 
 /* Clearing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
