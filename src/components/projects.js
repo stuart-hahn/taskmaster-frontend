@@ -10,10 +10,17 @@ class Projects {
     initBindings() {
         this.projectsList = document.querySelector(".projectsList")
         this.tasksList = document.querySelector(".tasksList")
+        this.newProjectForm = document.querySelector(".newProjectForm")
+        this.newProjectButton = document.querySelector(".newProjectButton")
+        
     }
 
     initEventListeners() {
         this.projectsList.addEventListener('click', this.displayTasks.bind(this))
+        this.newProjectButton.addEventListener('click', () => {
+            this.newProjectButton.classList.toggle('hidden')
+            this.newProjectForm.classList.toggle('hidden')
+        })
     }
 
     fetchProjects() {
