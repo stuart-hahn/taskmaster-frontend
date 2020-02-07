@@ -1,71 +1,52 @@
 class Projects {
     constructor() {
         this.projects = []
-        this.tasks = []
-        this.adapter = new projectsAdapter()
+        this.adapter = new ProjectsAdapter()
+        this.fetchProjects()
         this.initBindings()
         this.initEventListeners()
-        this.fetchProjects()
-        this.fetchTasks()
     }
-    
+
     initBindings() {
-        this.projectsContainer = document.querySelector(".projectsContainer")
-        this.newProjectForm = document.querySelector(".newProjectForm")
-        this.newProjectTitle = document.querySelector("#projectTitle")
         this.projectsList = document.querySelector(".projectsList")
-        this.newProjectButton = document.querySelector(".newProjectButton")
+        this.tasksList = document.querySelector(".tasksList")
     }
-    
+
     initEventListeners() {
-        this.newProjectForm.addEventListener("submit", this.createProject.bind(this))
-        this.newProjectButton.addEventListener('click', () => {
-            this.newProjectButton.classList.toggle('hidden')
-            this.newProjectForm.classList.toggle('hidden')
-        })
+        this.projectsList.addEventListener('click', this.displayTasks.bind(this))
     }
-    
+
     fetchProjects() {
         this.adapter.getProjects()
         .then(projects => {
-            projects.data.forEach(project => {
-                this.projects.push(new Project(project))
-            })
+            projects.data.forEach(project => this.projects.push(project))
         })
         .then(() => this.render())
     }
-    fetchTasks() {
-        this.adapter.getProjects()
-        .then(projects => {
-            projects.included.forEach(task => {
-                this.tasks.push(new Task(task))
-            })
-        })
-        // .then(() => this.renderTasks())
-    }
-    
-    createProject(e) {
-        e.preventDefault()
-        const value = this.newProjectTitle.value
-        this.adapter.createProject(value)
-        .then(project => {
-            this.projects.push(new Project(project))
-            this.render()
-        })
-        this.newProjectButton.classList.toggle('hidden')
-        this.newProjectForm.classList.toggle('hidden')
-    }
-    
+
     render() {
         this.projectsList.innerHTML = ""
-        for (const project of this.projects) {
-            const projectLi = document.createElement("li")
-            projectLi.innerText = `${project.title}`
+        this.projects.forEach(project => {
+            const projectLi = document.createElement('li')
+            projectLi.id = project.id
+            projectLi.innerText = project.attributes.title
             this.projectsList.appendChild(projectLi)
-        }
+        })
     }
 
-    renderTasks() {
-        this.taskList.innerHTML = ""
+    displayTasks(e) {
+        const project = this.projects.find( ({ id }) => id === e.target.id )
+
+        this.projectsList.innerHTML = ""
+        const projectTitle = document.createElement('h2')
+        projectTitle.innerText = project.attributes.title
+        this.tasksList.appendChild(projectTitle)
+
+        project.attributes.tasks.forEach(task => {
+            const taskLi = document.createElement('li')
+            taskLi.innerText = task.title
+            this.tasksList.appendChild(taskLi)
+        })
+
     }
 }
