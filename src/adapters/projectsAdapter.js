@@ -14,10 +14,12 @@ class ProjectsAdapter {
         return fetch(this.baseUrl, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
             },
             body: JSON.stringify({ project })
         })
+        .then(res => res.json())
     }
     
 }

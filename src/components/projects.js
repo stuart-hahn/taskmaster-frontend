@@ -28,6 +28,9 @@ class Projects {
         e.preventDefault()
         const projectTitle = this.newProjectForm.querySelector('#project-title').value
         this.adapter.createProject(projectTitle)
+            .then(project => {
+                console.log(project)
+            })
     }
 
     fetchProjects() {
