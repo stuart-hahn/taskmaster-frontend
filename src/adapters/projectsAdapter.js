@@ -6,5 +6,18 @@ class ProjectsAdapter {
     getProjects() {
         return fetch(this.baseUrl).then(res => res.json())
     }
+
+    createProject(projectTitle) {
+        const project = {
+            title: projectTitle
+        }
+        return fetch(this.baseUrl, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ project })
+        })
+    }
     
 }
