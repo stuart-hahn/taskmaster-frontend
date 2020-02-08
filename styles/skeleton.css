@@ -126,7 +126,7 @@ body {
   font-weight: 400;
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222; }
-.sectionHeader {
+.section-header {
   text-transform: uppercase;
   font-size: 1.4rem;
   letter-spacing: .2rem;
@@ -389,10 +389,16 @@ hr {
   display: none;
 }
 
-.projectsList li:hover {
+.projects-list li:hover {
   cursor: pointer;
   color: magenta;
-  font-size: 24px;
+  font-size: 1.7rem;
+}
+
+#return-home:hover {
+  cursor: pointer;
+  color: gray;
+  font-size: 5.3rem;
 }
 
 
