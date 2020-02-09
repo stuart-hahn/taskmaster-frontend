@@ -1,17 +1,17 @@
 class ProjectsAdapter {
     constructor() {
-        this.baseUrl = "http://localhost:3000/api/v1/projects"
+        this.projectsUrl = "http://localhost:3000/api/v1/projects"
     }
 
     getProjects() {
-        return fetch(this.baseUrl).then(res => res.json())
+        return fetch(this.projectsUrl).then(res => res.json())
     }
 
     createProject(projectTitle) {
         const project = {
             title: projectTitle
         }
-        return fetch(this.baseUrl, {
+        return fetch(this.projectsUrl, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

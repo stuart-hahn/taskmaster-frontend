@@ -31,6 +31,8 @@ class Projects {
             .then(project => {
                 this.projects.push(new Projects(project))
             })
+        const form = document.getElementById("create-project-form")
+        form.reset()
         this.render()
     }
 
@@ -44,13 +46,13 @@ class Projects {
 
     render() {
         this.projectsList.innerHTML = ""
-        this.tasksList.innerHTML = ""
+        this.tasksList.innerHTML = ''
         const projectsHeader = document.createElement('h2')
         projectsHeader.classList.add('section-header')
         projectsHeader.innerText = "All Projects"
         this.projectsList.appendChild(projectsHeader)
 
-        this.projects.forEach(project => {
+        this.projects.map(project => {
             const projectLi = document.createElement('li')
             projectLi.id = project.id
             projectLi.innerText = project.attributes.title
@@ -59,18 +61,21 @@ class Projects {
     }
 
     displayTasks(e) {
+        this.tasksList.innerHTML = ''
         const project = this.projects.find( ({ id }) => id === e.target.id )
-
-        this.projectsList.innerHTML = ""
+        
+        this.projectsList.innerHTML = ''
         const projectTitle = document.createElement('h2')
         projectTitle.classList.add('section-header')
         projectTitle.innerText = project.attributes.title
         this.tasksList.appendChild(projectTitle)
         
-        project.attributes.tasks.forEach(task => {
-            const taskLi = document.createElement('li')
-            taskLi.innerText = task.title
-            this.tasksList.appendChild(taskLi)
-        })
+        if (project.attributes.tasks.length != 0) {
+            project.attributes.tasks.forEach(task => {
+                const taskLi = document.createElement('li')
+                taskLi.innerText = task.title
+                this.tasksList.appendChild(taskLi)
+            })
+        }
     }
 }
